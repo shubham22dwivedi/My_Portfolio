@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shubham Dubey - Software Devloper</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        
+        .header {
+            background: #fff;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .header nav a {
+            color: #555;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: 500;
+        }
+
+        .hero {
+            background-color: #e2e8f0;
+            padding: 4rem 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content h2 {
+            font-size: 2.5rem;
+            margin: 0 0 1rem;
+            font-weight: 700;
+        }
+        
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .hero-image img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .section {
+            padding: 3rem 2rem;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .certificate-item {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .certificate-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .certificate-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        
+        .certificate-item h3 {
+            margin: 1rem 0 0.5rem;
+            font-size: 1.25rem;
+        }
+        
+        .certificate-item p {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .about-content p {
+            max-width: 800px;
+            font-size: 1.1rem;
+        }
+        
+        .about-content a.resume-button {
+            display: inline-block;
+            background-color: #333;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            margin-top: 1.5rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .about-content a.resume-button:hover {
+            background-color: #555;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .contact-form form {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .contact-form button {
+            background: #333;
+            color: #fff;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .contact-form button:hover {
+            background-color: #555;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 100; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.9);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        #modal-image {
+            width: 100%;
+            height: auto;
+        }
+        
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0}
+            to {opacity: 1}
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .header h1 {
+                margin-bottom: 1rem;
+            }
+
+            .header nav a {
+                margin: 0 0.5rem;
+            }
+            
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .hero-image img {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .close {
+                top: 5px;
+                right: 20px;
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>Shubham Dubey</h1>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#certificates">Certificates</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-image">
+            <img src="WhatsApp Image 2025-09-16 at 20.30.28_dadb107a.jpg" alt="Professional headshot of John Smith">
+        </div>
+        <div class="hero-content">
+            <h2>Building bridges between vision and reality.</h2>
+            <p> Driven and detail-focused final-year Computer Science and Engineering (B.Tech, 2022-2026) student possessing a robust foundation in 
+computer science alongside practical experience in programming, data structures, and algorithms.</p>
+        </div>
+    </section>
+
+    <section id="certificates" class="section">
+        <h2>Certificates & Awards</h2>
+        <div class="certificates-grid">
+            <div class="certificate-item" onclick="openModal('Screenshot 2025-09-16 161733.png')">
+                <img src="Screenshot 2025-09-16 161733.png" alt="PMP Certificate">
+                <h3>Project Management Professional (PMP)</h3>
+                <p>Project Management Institute (PMI) | March 2022</p>
+            </div>
+            <div class="certificate-item" onclick="openModal('2.jpg')">
+                <img src="2.jpg" alt="Agile PM Certificate">
+                <h3>Certified Agile Project Manager</h3>
+                <p>Scrum Alliance | August 2021</p>
+            </div>
+            <div class="certificate-item" onclick="openModal('3.jpg')">
+                <img src="3.jpg" alt="Risk Management Certificate">
+                <h3>Certificate in Risk Management</h3>
+                <p>Coursera | June 2020</p>
+            </div>
+             <div class="certificate-item" onclick="openModal('4.png')">
+                <img src="4.png" alt="Risk Management Certificate">
+                <h3>Certificate in Risk Management</h3>
+                <p>Coursera | June 2020</p>
+                </div>
+                 <div class="certificate-item" onclick="openModal('5.png')">
+                <img src="5.png" alt="Risk Management Certificate">
+                <h3>Certificate in Risk Management</h3>
+                <p>Coursera | June 2020</p>
+            </div>
+            </div>
+        
+    </section>
+
+    <section id="about" class="section">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <p> Hi, I’m Shubham Dubey, a passionate learner and problem solver with strong interest in software development, algorithms, and system design. I enjoy building efficient solutions, exploring new technologies, and continuously improving my skills.
+
+Currently, I’m focused on sharpening my expertise in Java, DSA, and web development, while also exploring areas like compiler design and optimization techniques. I believe in writing clean, maintainable code and creating projects that solve real-world problems.
+
+Beyond coding, I value collaboration, curiosity, and lifelong learning — qualities that drive me to grow both personally and professionally.</p>
+            <a href="Shubham_Dubey_Resume_Updated Advance A4.pdf" class="resume-button" download>Download My Resume (PDF)</a>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2>Contact</h2>
+        <div class="contact-form">
+            <p style="text-align: center;">Feel free to get in touch! I'm always open to discussing new opportunities or collaborations.</p>
+            <form id="contact-form" onsubmit="sendEmail(event);">
+                <input type="text" name="from_name" placeholder="Your Name" required>
+                <input type="email" name="from_email" placeholder="Your Email" required>
+                <textarea name="user_message" rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>
+            © 2025 Shubham Dubey. All Rights Reserved. | 
+            <a href="https://www.linkedin.com/in/shubham-dubey-bb3639329">LinkedIn</a> | 
+            <a href="https://github.com/shubham22dwivedi/WhetherApplication">GitHub</a>
+             
+        </p>
+    </footer>
+
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modal-image">
+    </div>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+    <script type="text/javascript">
+        // JavaScript for the modal
+        function openModal(imageSrc) {
+            const modal = document.getElementById("imageModal");
+            const modalImage = document.getElementById("modal-image");
+            modal.style.display = "block";
+            modalImage.src = imageSrc;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("imageModal");
+            modal.style.display = "none";
+        }
+
+        // JavaScript for the EmailJS integration
+            (function() {
+      emailjs.init("J-5fkX8se5fqpA1Jw"); 
+    })();
+
+    // ✅ Send email function
+    function sendEmail(event) {
+      event.preventDefault(); // stop form default submission
+
+       const formData = new FormData(event.target);
+  for (let [key, value] of formData.entries()) {
+    console.log("FIELD:", key, "VALUE:", value);
+  }
+
+      const serviceID = "service_crz6s9h";
+      const templateID = "template_jxul9kq";
+
+      emailjs.sendForm(serviceID, templateID, event.target)
+        .then(() => {
+          alert("✅ SUCCESS! Your message has been sent.");
+          document.getElementById("contact-form").reset();
+        })
+        .catch((error) => {
+          console.error("FAILED...", error);
+          alert("❌ FAILED to send message. Check console for details.");
+        });
+    }
+    </script>
+
+</body>
+</html>
